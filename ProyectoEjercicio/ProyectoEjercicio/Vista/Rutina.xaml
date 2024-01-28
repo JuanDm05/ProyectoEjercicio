@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoEjercicio.Vista.Rutina"
+             xmlns:triggers="clr-namespace:ProyectoEjercicio.Disparadores"
+             Title="Crear Rutina"
+             BackgroundColor="#0d98fe"
+             Padding="10">
+    <ContentPage.Resources>
+        <Style TargetType="Button">
+            <Style.Triggers>
+                <Trigger TargetType="Button" Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="blue">
+
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        
+        <StackLayout Spacing="20">
+            <Frame Margin="15,10,15,10" CornerRadius="15">
+                <Frame.Background>
+                    <LinearGradientBrush EndPoint="1,0">
+                        <GradientStop Color="White" Offset="0"/>
+                        <GradientStop Color="Aqua" Offset="0.9"/>
+                    </LinearGradientBrush>
+                </Frame.Background>
+                <Label Text="Nueva Rutina"
+                       FontSize="35"
+                       FontAttributes="Bold"
+                       TextColor="Black"
+                       HorizontalOptions="Center" />
+            </Frame>
+
+            <!-- CollectionView con estilo degradado en cada ítem -->
+            <CollectionView x:Name="ListaEjercicios" >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="10" CornerRadius="15" Margin="5" BackgroundColor="Aqua" >
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
+                                <!-- Nombre del ejercicio -->
+                                <Label Text="{Binding Ejercicio}" 
+                                       HorizontalOptions="FillAndExpand" FontSize="12" FontAttributes="Bold"  TextColor="Black"/>
+                                <!-- Cantidad de repeticiones -->
+                                <Label Text="Reps" FontSize="12" WidthRequest="49" FontAttributes="Bold" TextColor="Black"/>
+                                <Label Text="{Binding repeticiones}" 
+                                       WidthRequest="100" FontSize="12" FontAttributes="Bold" TextColor="Black" />
+                                <Button Text="Eliminar" 
+                                        CommandParameter="{Binding id_rutina}" 
+                                        Clicked="OnEliminarClicked" CornerRadius="20" BackgroundColor="DarkRed" />
+                                <CheckBox IsChecked="False">
+                                    <CheckBox.Triggers>
+                                        <EventTrigger Event="CheckedChanged">
+                                            <triggers:CheckboxCheckedTrigger />
+                                        </EventTrigger>
+                                    </CheckBox.Triggers>
+                                </CheckBox>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Frame Padding="0" 
+                   BorderColor="#CCCCCC" 
+                   CornerRadius="5" 
+                   BackgroundColor="#FFFFFF"
+                   Margin="10"
+                   HorizontalOptions="FillAndExpand">
+                <Entry x:Name="ejer"
+                       Placeholder="Nombre del ejercicio"
+                       FontSize="Large"
+                       PlaceholderColor="#505050"
+
+                       TextColor="Black"
+                       BackgroundColor="Aqua"/>
+            </Frame>
+            <Frame Padding="0" 
+                   BorderColor="#CCCCCC" 
+                   CornerRadius="5" 
+                   BackgroundColor="#FFFFFF"
+                   Margin="10"
+                   HorizontalOptions="FillAndExpand">
+                <Entry x:Name="repes"
+                       Placeholder="Repeticiones"
+                       Keyboard="Numeric"
+                       FontSize="Large"
+                       PlaceholderColor="#505050"
+
+                       TextColor="Black"
+                       BackgroundColor="Aqua"/>
+            </Frame>
+            <ScrollView>
+                <StackLayout>
+
+                    <Button Text="Guardar Rutina" 
+         Clicked="guardarReps"
+          x:Name="btnGuardarRutina"
+         BackgroundColor="Aqua"
+         TextColor="Black" 
+         FontSize="20"
+         FontAttributes="Bold"
+         CornerRadius="5">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button"
+          Binding="{Binding Text.Length, Source={x:Reference ejer}}"
+          Value="0">
+                                <Setter Property="IsEnabled" Value="False" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button"
+          Binding="{Binding Text.Length, Source={x:Reference repes}}"
+          Value="0">
+                                <Setter Property="IsEnabled" Value="False" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+
+                    <Image VerticalOptions="CenterAndExpand" HeightRequest="250" Source="{Binding Imagen}">
+                        <Image.Triggers>
+                            <MultiTrigger TargetType="Image">
+                                <MultiTrigger.Conditions>
+                                    <BindingCondition Binding="{Binding ActivadorAnimacionImg}" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <MultiTrigger.EnterActions>
+                                    <triggers:Timagen activation="True"/>
+                                </MultiTrigger.EnterActions>
+                                <MultiTrigger.ExitActions>
+                                    <triggers:Timagen activation="False"/>
+                                </MultiTrigger.ExitActions>
+                            </MultiTrigger>
+                        </Image.Triggers>
+                    </Image>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

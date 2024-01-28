@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoEjercicio.Vista.MenuPrincipal"
+             Title="Menu Principal"
+             BackgroundColor="Blue">
+
+    <Grid RowDefinitions="250,130,40,*">
+        <Frame Margin="15,30,15,30" CornerRadius="15">
+            <Frame.Background>
+                <LinearGradientBrush EndPoint="1,0">
+                    <GradientStop Color="White" Offset="0"/>
+                    <GradientStop Color="#0d98fe" Offset="0.4"/>
+                </LinearGradientBrush>
+            </Frame.Background>
+            <StackLayout>
+                <Label Text="Fit Proyect" FontSize="35" FontAttributes="Bold" TextColor="Black" 
+                       HorizontalOptions="Center"/>
+                <Label Text="El cambio, inicia hoy" FontSize="35" FontAttributes="Italic" TextColor="Black"/>
+            </StackLayout>
+        </Frame>
+
+        <Frame Grid.Row="1" CornerRadius="20" Margin="15,0,15,0">
+            <Grid ColumnDefinitions="*,*" VerticalOptions="Center">
+                <StackLayout>
+                    <Frame Padding="0" BackgroundColor="#eef1fd"
+                           CornerRadius="50" HorizontalOptions="Center">
+                    <Image Source="https://i.ibb.co/vPyZVr5/capacitacion.png" HeightRequest="75">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer x:Name="Cardio" Tapped="Cardio_Tapped"></TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    </Frame>
+                        <Label Text="Sprints" HorizontalOptions="Center" TextColor="Black" FontSize="13"/>
+
+                </StackLayout>
+                <StackLayout Grid.Column="1" >
+                    <Frame Padding="0" BackgroundColor="#eef1fd" CornerRadius="50"  HorizontalOptions="Center">
+                        <Image Source="https://i.ibb.co/pbH090m/lista-de-verificacion-1.png" HeightRequest="75">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer x:Name="Historial" Tapped="Historial_Tapped"></TapGestureRecognizer>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Frame>
+                    <Label Text="Historial pasos"  HorizontalOptions="Center" TextColor="Black" FontSize="13"/>
+                </StackLayout>
+                <StackLayout Grid.Column="2" >
+                    <Frame Padding="0" BackgroundColor="#eef1fd" CornerRadius="50" HorizontalOptions="Center">
+                        <Image Source="https://i.ibb.co/tCxrcLK/levantamiento-de-pesas.png" HeightRequest="75">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer x:Name="Rutina" Tapped="Rutina_Tapped"></TapGestureRecognizer>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Frame>
+                    <Label Text="Crear Rutina" HorizontalOptions="Center" TextColor="Black" FontSize="13"/>
+                </StackLayout>
+            </Grid>
+        </Frame>
+      
+    </Grid>
+
+</ContentPage>

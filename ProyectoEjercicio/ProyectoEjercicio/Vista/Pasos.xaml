@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoEjercicio.Vista.Pasos"
+            xmlns:triggers="clr-namespace:ProyectoEjercicio.Disparadores"
+
+             BackgroundColor="#0d98fe">
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <!-- Encabezado con un fondo degradado -->
+                <Frame Margin="15,30,15,0" CornerRadius="15">
+                    <Frame.Background>
+                        <LinearGradientBrush EndPoint="1,0">
+                            <GradientStop Color="White" Offset="0.1"/>
+                            <GradientStop Color="Aqua" Offset="0.7"/>
+                        </LinearGradientBrush>
+                    </Frame.Background>
+                    <Label x:Name="Paso" 
+                           Text="Pasos: 0" 
+                           FontSize="Large"
+                           TextColor="Black"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"
+                           VerticalOptions="CenterAndExpand">
+                        
+                    </Label>
+
+                </Frame>
+                <ProgressBar x:Name="progressBar"
+                             Margin="20"
+                             HeightRequest="20"
+                             Progress="0" />
+                <!-- Entry envuelto en un Frame para el borde -->
+                <Frame Padding="0" 
+                       BorderColor="#CCCCCC" 
+                       CornerRadius="5" 
+                       BackgroundColor="#FFFFFF"
+                       Margin="10"
+                       HorizontalOptions="FillAndExpand">
+                    <Entry x:Name="dia" Placeholder="Ingresa Día" FontSize="Large" PlaceholderColor="#505050" TextColor="Black" BackgroundColor="Aqua">
+                        <Entry.Triggers>
+                            <Trigger TargetType="Entry" Property="IsFocused" Value="True">
+                                <Setter Property="BackgroundColor" Value="LightSkyBlue" />
+                            </Trigger>
+                        </Entry.Triggers>
+                    </Entry>
+
+                </Frame>
+                <Grid>
+                    
+                    <Button Text="Guardar progreso" 
+        x:Name="btnGuardar" 
+        Clicked="btnGuardar_Clicked"
+        HorizontalOptions="Center"
+        VerticalOptions="CenterAndExpand"
+        TextColor="Black"
+        BackgroundColor="Aqua"
+        Grid.Column="0"
+        FontSize="15">
+
+                        
+                        
+                        
+                        
+                        <Button.Behaviors>
+                            <triggers:ButtonPressedBehavior />
+                        </Button.Behaviors>
+                    </Button>
+
+                    <Button Text="Iniciar/Detener  " 
+            Clicked="Button_Iniciar"
+            HorizontalOptions="Center"
+            VerticalOptions="CenterAndExpand"         TextColor="Black"
+ BackgroundColor="Aqua"  Grid.Column="1" FontSize="15"/>
+
+                </Grid>
+            
+                
+            
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

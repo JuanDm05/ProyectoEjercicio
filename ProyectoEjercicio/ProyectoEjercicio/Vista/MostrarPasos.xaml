@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoEjercicio.Vista.MostrarPasos"
+             Title="Pasos Diarios"
+             BackgroundColor="#0d98fe">
+
+    <ContentPage.Content>
+        <RefreshView>
+            <CollectionView x:Name="listaPasos">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Margin="10" CornerRadius="15">
+                            <Frame.Background>
+                                <LinearGradientBrush EndPoint="1,0">
+                                    <GradientStop Color="WhiteSmoke" Offset="0.1"/>
+                                    <GradientStop Color="Blue" Offset="0.9"/>
+                                </LinearGradientBrush>
+                            </Frame.Background>
+
+                            <StackLayout Padding="10">
+                                <Label Text="{Binding Dia}" 
+                                       FontSize="30" 
+                                       TextColor="Black"/>
+                                <Label Text="{Binding pasos}" 
+                                       FontAttributes="Bold" 
+                                       TextColor="Black"
+                                       FontSize="20"/>
+                                <Button Text="Eliminar" 
+                                        CommandParameter="{Binding id_sprint}" 
+                                        Clicked="OnEliminarClicked"
+                                        BackgroundColor="DarkRed"
+                                        TextColor="White"
+                                        CornerRadius="5"/>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+    </ContentPage.Content>
+</ContentPage>
